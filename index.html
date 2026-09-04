@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chalk & Slate — Tic-Tac-Toe vs Bot</title>
+
+<!-- Tailwind (CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Google Fonts: handwritten display + clean utility -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="min-h-screen board-bg text-chalk flex items-center justify-center p-4 sm:p-8">
+
+  <!-- ambient chalk dust -->
+  <div class="dust-layer" aria-hidden="true"></div>
+
+  <main class="relative w-full max-w-md">
+
+    <!-- Header -->
+    <header class="text-center mb-6 select-none">
+      <p class="eyebrow">TWO PLAYERS. ONE CHALKBOARD. ONE OF THEM IS A ROBOT.</p>
+      <h1 class="title-font text-5xl sm:text-6xl leading-none mt-1">
+        Chalk &amp; Slate
+      </h1>
+      <p class="subtitle mt-2">Tic-Tac-Toe against the bot in the corner</p>
+    </header>
+
+    <!-- Scoreboard: chalk tally style -->
+    <section class="tally-board grid grid-cols-3 gap-2 mb-6" aria-label="Scoreboard">
+      <div class="tally-cell" data-player="X">
+        <span class="tally-label">YOU · X</span>
+        <span id="score-x" class="tally-count">0</span>
+      </div>
+      <div class="tally-cell" data-player="draw">
+        <span class="tally-label">DRAWS</span>
+        <span id="score-draw" class="tally-count">0</span>
+      </div>
+      <div class="tally-cell" data-player="O">
+        <span class="tally-label">BOT · O</span>
+        <span id="score-o" class="tally-count">0</span>
+      </div>
+    </section>
+
+    <!-- Status line -->
+    <div class="status-wrap mb-4 text-center">
+      <p id="status" class="status-font text-2xl" role="status" aria-live="polite">Your move, chalk in hand.</p>
+    </div>
+
+    <!-- Board -->
+    <section class="wood-frame">
+      <div class="relative">
+        <div id="board" class="board-grid" role="grid" aria-label="Tic-tac-toe board">
+          <button class="cell" data-index="0" role="gridcell" aria-label="Row 1 Column 1"></button>
+          <button class="cell" data-index="1" role="gridcell" aria-label="Row 1 Column 2"></button>
+          <button class="cell" data-index="2" role="gridcell" aria-label="Row 1 Column 3"></button>
+          <button class="cell" data-index="3" role="gridcell" aria-label="Row 2 Column 1"></button>
+          <button class="cell" data-index="4" role="gridcell" aria-label="Row 2 Column 2"></button>
+          <button class="cell" data-index="5" role="gridcell" aria-label="Row 2 Column 3"></button>
+          <button class="cell" data-index="6" role="gridcell" aria-label="Row 3 Column 1"></button>
+          <button class="cell" data-index="7" role="gridcell" aria-label="Row 3 Column 2"></button>
+          <button class="cell" data-index="8" role="gridcell" aria-label="Row 3 Column 3"></button>
+        </div>
+        <!-- strike-through line for the winning triplet -->
+        <svg id="strike" class="strike-svg" viewBox="0 0 300 300" aria-hidden="true">
+          <line id="strike-line" x1="0" y1="0" x2="0" y2="0" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- Controls -->
+    <section class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="difficulty-wrap">
+        <label for="difficulty" class="tally-label block mb-1">BOT MOOD</label>
+        <select id="difficulty" class="difficulty-select">
+          <option value="easy">Doodling (Easy)</option>
+          <option value="medium" selected>Paying Attention (Medium)</option>
+          <option value="hard">Sharp Chalk (Hard)</option>
+        </select>
+      </div>
+      <button id="reset" class="reset-btn">
+        Wipe the board
+      </button>
+    </section>
+
+    <footer class="text-center mt-8 subtitle">
+      You're always X. The bot goes second, in coral.
+    </footer>
+  </main>
+
+<script src="script.js"></script>
+</body>
+</html>
